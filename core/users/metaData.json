@@ -1,0 +1,16 @@
+{
+    "MetaData" : {
+    "id" : "CORE_USERS",
+    "name" : {
+        "default" : "Users",
+        "CZ" : "Uživatelé"
+    },
+    "description" : {
+        "default" : "",
+        "CZ" : ""
+    },
+    "schemaVersion" : 1,
+    "sql" : [],
+    "dependencies" : []
+    }
+}

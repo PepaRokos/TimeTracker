@@ -1,0 +1,44 @@
+<RCC>
+    <qresource prefix="/">
+        <file>metaData.json</file>
+        <file>users/metaData.json</file>
+        <file>roles/metaData.json</file>
+        <file>icons/new.svg</file>
+        <file>icons/edit.svg</file>
+        <file>icons/delete.svg</file>
+        <file>icons/remove.svg</file>
+        <file>icons/filter.svg</file>
+        <file>icons/print.svg</file>
+        <file>icons/save.svg</file>
+        <file>icons/ok.svg</file>
+        <file>icons/list.svg</file>
+        <file>icons/usersPlugin.svg</file>
+        <file>icons/rolesPlugin.svg</file>
+        <file>translations/core_cs_CZ.qm</file>
+        <file>icons/close.svg</file>
+        <file>icons/fitHorizontal.svg</file>
+        <file>icons/fitVertical.svg</file>
+        <file>icons/pageDown.svg</file>
+        <file>icons/pageUp.svg</file>
+        <file>icons/pdf.svg</file>
+        <file>icons/zoomIn.svg</file>
+        <file>icons/zoomOut.svg</file>
+        <file>icons/report.svg</file>
+        <file>icons/import.svg</file>
+        <file>icons/edit_24x24.png</file>
+        <file>icons/filter_24x24.png</file>
+        <file>icons/new_24x24.png</file>
+        <file>icons/print_24x24.png</file>
+        <file>icons/remove_24x24.png</file>
+        <file>icons/ok_24x24.png</file>
+        <file>icons/close_24x24.png</file>
+        <file>icons/fitHorizontal_24x24.png</file>
+        <file>icons/fitVertical_24x24.png</file>
+        <file>icons/pageDown_24x24.png</file>
+        <file>icons/pageUp_24x24.png</file>
+        <file>icons/pdf_24x24.png</file>
+        <file>icons/report_24x24.png</file>
+        <file>icons/zoomIn_24x24.png</file>
+        <file>icons/zoomOut_24x24.png</file>
+    </qresource>
+</RCC>

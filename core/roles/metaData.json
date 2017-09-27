@@ -1,0 +1,16 @@
+{
+    "MetaData" : {
+    "id" : "CORE_ROLES",
+    "name" : {
+        "default" : "Roles",
+        "CZ" : "Role"
+    },
+    "description" : {
+        "default" : "",
+        "CZ" : ""
+    },
+    "schemaVersion" : 1,
+    "sql" : [],
+    "dependencies" : []
+    }
+}

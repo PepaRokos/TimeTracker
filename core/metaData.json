@@ -1,0 +1,97 @@
+{
+    "MetaData" : {
+    "id" : "CORE",
+    "name" : {
+        "default" : "Core plugin",
+        "CZ" : "Jádro"
+    },
+    "description" : {
+        "default" : "",
+        "CZ" : ""
+    },
+    "schemaVersion" : 1,
+    "sql" : [
+        "CREATE TABLE \"User\" (
+  \"id\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  \"login\" TEXT NULL,
+  \"password\" TEXT NULL,
+  \"name\" TEXT NULL,
+  \"lastModDate\" TEXT NULL,
+  \"createDate\" TEXT NULL,
+  \"active\" INTEGER NOT NULL,
+  \"isAdmin\" INTEGER NOT NULL);
+
+CREATE TABLE \"User_listRoles\" (
+  \"object_id\" INTEGER NOT NULL,
+  \"index\" INTEGER NOT NULL,
+  \"value\" INTEGER NOT NULL,
+  CONSTRAINT \"object_id_fk\"
+    FOREIGN KEY (\"object_id\")
+    REFERENCES \"User\" (\"id\")
+    ON DELETE CASCADE,
+  CONSTRAINT \"value_fk\"
+    FOREIGN KEY (\"value\")
+    REFERENCES \"Role\" (\"id\")
+    DEFERRABLE INITIALLY DEFERRED);
+
+CREATE INDEX \"User_listRoles_object_id_i\"
+  ON \"User_listRoles\" (\"object_id\");
+
+CREATE INDEX \"User_listRoles_index_i\"
+  ON \"User_listRoles\" (\"index\");
+
+CREATE TABLE \"Role\" (
+  \"id\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  \"name\" TEXT NULL,
+  \"lastModDate\" TEXT NULL,
+  \"createDate\" TEXT NULL,
+  \"active\" INTEGER NOT NULL);
+
+CREATE TABLE \"Role_listPermissions\" (
+  \"object_id\" INTEGER NOT NULL,
+  \"index\" INTEGER NOT NULL,
+  \"value\" INTEGER NOT NULL,
+  CONSTRAINT \"object_id_fk\"
+    FOREIGN KEY (\"object_id\")
+    REFERENCES \"Role\" (\"id\")
+    ON DELETE CASCADE,
+  CONSTRAINT \"value_fk\"
+    FOREIGN KEY (\"value\")
+    REFERENCES \"Permission\" (\"id\")
+    DEFERRABLE INITIALLY DEFERRED);
+
+CREATE INDEX \"Role_listPermissions_object_id_i\"
+  ON \"Role_listPermissions\" (\"object_id\");
+
+CREATE INDEX \"Role_listPermissions_index_i\"
+  ON \"Role_listPermissions\" (\"index\");
+
+CREATE TABLE \"Permission\" (
+  \"id\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  \"pluginId\" TEXT NULL,
+  \"permissionName\" TEXT NULL,
+  \"lastModDate\" TEXT NULL,
+  \"createDate\" TEXT NULL,
+  \"active\" INTEGER NOT NULL);
+
+CREATE TABLE \"Season\" (
+  \"id\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  \"name\" TEXT NULL,
+  \"validFrom\" TEXT NULL,
+  \"validTo\" TEXT NULL,
+  \"active\" INTEGER NOT NULL);
+
+CREATE TABLE \"NumberSeries\" (
+  \"id\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  \"prefix\" TEXT NULL,
+  \"lastNumber\" INTEGER NOT NULL,
+  \"pluginId\" TEXT NULL,
+  \"season\" INTEGER NULL,
+  CONSTRAINT \"season_fk\"
+    FOREIGN KEY (\"season\")
+    REFERENCES \"Season\" (\"id\")
+    DEFERRABLE INITIALLY DEFERRED);
+"   ],
+    "dependencies" : []
+    }
+}

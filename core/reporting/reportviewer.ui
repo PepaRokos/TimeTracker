@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ReportViewer</class>
+ <widget class="QDialog" name="ReportViewer">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>914</width>
+    <height>675</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Report</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_2">
+   <item>
+    <widget class="QWidget" name="widget" native="true">
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QToolButton" name="btnClose">
+        <property name="toolTip">
+         <string>Close</string>
+        </property>
+        <property name="text">
+         <string>Close</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../rc.qrc">
+          <normaloff>:/icons/close_24x24.png</normaloff>:/icons/close_24x24.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>24</width>
+          <height>24</height>
+         </size>
+        </property>
+        <property name="autoRaise">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="btnPrint">
+        <property name="toolTip">
+         <string>Print</string>
+        </property>
+        <property name="text">
+         <string>Print</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../rc.qrc">
+          <normaloff>:/icons/print_24x24.png</normaloff>:/icons/print_24x24.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>24</width>
+          <height>24</height>
+         </size>
+        </property>
+        <property name="autoRaise">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="btnPdf">
+        <property name="toolTip">
+         <string>Export to PDF</string>
+        </property>
+        <property name="text">
+         <string>Export to PDF</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../rc.qrc">
+          <normaloff>:/icons/pdf_24x24.png</normaloff>:/icons/pdf_24x24.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>24</width>
+          <height>24</height>
+         </size>
+        </property>
+        <property name="autoRaise">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="btnEdit">
+        <property name="toolTip">
+         <string>Edit</string>
+        </property>
+        <property name="text">
+         <string>Edit</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../rc.qrc">
+          <normaloff>:/icons/edit_24x24.png</normaloff>:/icons/edit_24x24.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>24</width>
+          <height>24</height>
+         </size>
+        </property>
+        <property name="autoRaise">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="btnPageUp">
+        <property name="toolTip">
+         <string>Page up</string>
+        </property>
+        <property name="text">
+         <string>Page up</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../rc.qrc">
+          <normaloff>:/icons/pageUp_24x24.png</normaloff>:/icons/pageUp_24x24.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>24</width>
+          <height>24</height>
+         </size>
+        </property>
+        <property name="autoRaise">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QSpinBox" name="pageNavigator">
+        <property name="suffix">
+         <string> of </string>
+        </property>
+        <property name="prefix">
+         <string>Page: </string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="btnPageDown">
+        <property name="toolTip">
+         <string>Page down</string>
+        </property>
+        <property name="text">
+         <string>Page down</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../rc.qrc">
+          <normaloff>:/icons/pageDown_24x24.png</normaloff>:/icons/pageDown_24x24.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>24</width>
+          <height>24</height>
+         </size>
+        </property>
+        <property name="autoRaise">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="btnZoomOut">
+        <property name="toolTip">
+         <string>Zoom out</string>
+        </property>
+        <property name="text">
+         <string>Zoom out</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../rc.qrc">
+          <normaloff>:/icons/zoomOut_24x24.png</normaloff>:/icons/zoomOut_24x24.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>24</width>
+          <height>24</height>
+         </size>
+        </property>
+        <property name="autoRaise">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="btnZoomIn">
+        <property name="toolTip">
+         <string>Zoom in</string>
+        </property>
+        <property name="text">
+         <string>Zoom in</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../rc.qrc">
+          <normaloff>:/icons/zoomIn_24x24.png</normaloff>:/icons/zoomIn_24x24.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>24</width>
+          <height>24</height>
+         </size>
+        </property>
+        <property name="autoRaise">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="btnFitHoriz">
+        <property name="toolTip">
+         <string>Fit horizontal</string>
+        </property>
+        <property name="text">
+         <string>Fit horizontal</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../rc.qrc">
+          <normaloff>:/icons/fitHorizontal_24x24.png</normaloff>:/icons/fitHorizontal_24x24.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>24</width>
+          <height>24</height>
+         </size>
+        </property>
+        <property name="autoRaise">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="btnFitVert">
+        <property name="toolTip">
+         <string>Fit vertical</string>
+        </property>
+        <property name="text">
+         <string>Fit vertical</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../rc.qrc">
+          <normaloff>:/icons/fitVertical_24x24.png</normaloff>:/icons/fitVertical_24x24.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>24</width>
+          <height>24</height>
+         </size>
+        </property>
+        <property name="autoRaise">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="widget_2" native="true">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <layout class="QVBoxLayout" name="reportLayout"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="../rc.qrc"/>
+ </resources>
+ <connections/>
+</ui>

@@ -1,0 +1,90 @@
+#-------------------------------------------------
+#
+# Project created by QtCreator 2015-10-28T15:25:33
+#
+#-------------------------------------------------
+
+QT       += widgets sql
+
+TARGET = core
+TEMPLATE = lib
+
+DEFINES += CORE_LIBRARY
+
+SOURCES += \
+    data/user.cpp \
+    context.cpp \
+    imetadataplugin.cpp \
+    transaction.cpp \
+    emptystringvalidator.cpp \
+    data/role.cpp \
+    data/permission.cpp \
+    coreplugin.cpp \
+    igridform.cpp \
+    defaultformhandler.cpp \
+    formdialog.cpp \
+    iform.cpp \
+    users/users.cpp \
+    users/usersui.cpp \
+    users/tablemodel.cpp \
+    users/userform.cpp \
+    columndialog.cpp
+
+HEADERS += core.h\
+        core_global.h \
+    iplugin.h \
+    service.h \
+    data/user.h \
+    context.h \
+    imetadataplugin.h \
+    autotablemodel.h \
+    autoform.h \
+    transaction.h \
+    ivalidator.h \
+    emptystringvalidator.h \
+    data/role.h \
+    data/permission.h \
+    data/core-data.h \
+    coreplugin.h \
+    define.h \
+    gridform.h \
+    igridform.h \
+    defaultformhandler.h \
+    formdialog.h \
+    iform.h \
+    users/users.h \
+    users/usersui.h \
+    users/tablemodel.h \
+    users/userform.h \
+    columndialog.h
+
+unix {
+    target.path = /usr/lib
+    INSTALLS += target
+    QMAKE_CXXFLAGS += -std=c++11
+    QMAKE_CXXFLAGS += -Wno-unknown-pragmas
+}
+
+win32 {
+    QMAKE_CXXFLAGS += -wd4995 -wd4068
+}
+
+ODB_FILES = core/data/core-data.h
+
+H_DIR = $$PWD/data/*.h
+include(../odb.pri)
+
+RESOURCES += \
+    rc.qrc
+
+DISTFILES += \
+    metaData.json
+
+FORMS += \
+    gridform.ui \
+    formdialog.ui \
+    users/userform.ui \
+    columndialog.ui
+
+OTHER_FILES += \
+    users/metaData.json

@@ -1,0 +1,6 @@
+<?xml version="1.0" ?><svg clip-rule="evenodd" fill-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 5000 5000" xmlns="http://www.w3.org/2000/svg"><defs><style type="text/css"><![CDATA[
+    .str1 {stroke:#434242;stroke-width:100}
+    .str0 {stroke:#434242;stroke-width:100;stroke-linejoin:round}
+    .fil0 {fill:url(#id0)}
+    .fil1 {fill:url(#id1)}
+   ]]></style><linearGradient gradientUnits="userSpaceOnUse" id="id0" x1="4299.96" x2="700" y1="2700" y2="2700"><stop offset="0" stop-color="#008BFF"/><stop offset="1" stop-color="#0af"/></linearGradient><linearGradient gradientUnits="userSpaceOnUse" id="id1" x1="2499.98" x2="2499.98" y1="300.01" y2="1099.98"><stop offset="0" stop-color="#FCFCFD"/><stop offset="1" stop-color="#fff"/></linearGradient></defs><g id="Layer_x0020_1"><path class="fil0 str0" d="M2200 4500l600 200v-2100c0-100 50-150 100-200l1400-1400v-300h-3600v311l1400 1389c50 50 100 100 100 204v1896z"/><ellipse class="fil1 str1" cx="2500" cy="700" rx="1800" ry="400"/></g></svg>

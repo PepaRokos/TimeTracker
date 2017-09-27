@@ -1,0 +1,6 @@
+<?xml version="1.0" ?><svg clip-rule="evenodd" fill-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg"><defs><style type="text/css"><![CDATA[
+    .str0 {stroke:#434242;stroke-width:10}
+    .fil2 {fill:#434242}
+    .fil1 {fill:#FFFFFF}
+    .fil0 {fill:url(#id0)}
+   ]]></style><linearGradient gradientUnits="userSpaceOnUse" id="id0" x1="449.998" x2="50" y1="250" y2="250"><stop offset="0" stop-color="#008BFF"/><stop offset="1" stop-color="#0af"/></linearGradient></defs><g id="Layer_x0020_1"><rect class="fil0 str0" height="420" rx="20" ry="20" width="400" x="50" y="40"/><path class="fil1 str0" d="M80 105h340c6 0 10 5 10 10v315c0 5-4 10-10 10h-340c-6 0-10-4-10-10v-315c0-5 4-10 10-10z"/><rect class="fil2" height="30" width="30" x="100" y="140"/><rect class="fil2" height="30" width="239.999" x="160" y="140"/><rect class="fil2" height="30" width="30" x="100" y="220"/><rect class="fil2" height="30" width="239.999" x="160" y="220"/><rect class="fil2" height="30" width="30" x="100" y="300"/><rect class="fil2" height="30" width="239.999" x="160" y="300"/><rect class="fil2" height="30" width="30" x="100" y="380"/><rect class="fil2" height="30" width="239.999" x="160" y="380"/></g></svg>

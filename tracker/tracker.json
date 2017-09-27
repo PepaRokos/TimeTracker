@@ -1,0 +1,90 @@
+{
+    "id" : "TIMETRACKER",
+    "name" : {
+        "default" : "TimeTracker",
+        "CZ" : "TimeTracker"
+    },
+    "descriptoin" : {
+        "default" : "",
+        "CZ" : ""
+    },
+    "schemaVersion" : 2,
+    "sql" : [
+       "CREATE TABLE \"Client\" (
+  \"id\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  \"name\" TEXT NULL,
+  \"ic\" TEXT NULL,
+  \"dic\" TEXT NULL,
+  \"street\" TEXT NULL,
+  \"houseNumber\" TEXT NULL,
+  \"city\" TEXT NULL,
+  \"zipCode\" TEXT NULL);
+
+CREATE TABLE \"Project\" (
+  \"id\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  \"name\" TEXT NULL,
+  \"client\" INTEGER NULL,
+  \"start\" TEXT NULL,
+  \"dueTo\" TEXT NULL,
+  \"end\" TEXT NULL,
+  \"active\" INTEGER NOT NULL,
+  \"pricePerHour\" INTEGER NOT NULL,
+  \"totalPrice\" INTEGER NOT NULL,
+  CONSTRAINT \"client_fk\"
+    FOREIGN KEY (\"client\")
+    REFERENCES \"Client\" (\"id\")
+    DEFERRABLE INITIALLY DEFERRED);
+
+CREATE TABLE \"TimeLog\" (
+  \"id\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  \"project\" INTEGER NOT NULL,
+  \"description\" TEXT NULL,
+  \"start\" TEXT NULL,
+  \"end\" TEXT NULL,
+  \"minutes\" INTEGER NOT NULL,
+  \"pricePerHour\" INTEGER NOT NULL,
+  \"price\" INTEGER NOT NULL,
+  CONSTRAINT \"project_fk\"
+    FOREIGN KEY (\"project\")
+    REFERENCES \"Project\" (\"id\")
+    DEFERRABLE INITIALLY DEFERRED);",
+
+"ALTER TABLE Project ADD totalTime TEXT NULL;"
+    ],
+    "dependencies" : [  ],
+    "translations" : {
+        "CZ" : {
+            "name" : "Název",
+            "code" : "Kod",
+            "count" : "Počet",
+            "unitPrice" : "Cena",
+            "vatRate" : "Procento DPH",
+            "priceWitouthVat" : "Cena bez DPH",
+            "price" : "Cena",
+            "vatType" : "Sazba DPH",
+            "description" : "Popis",
+            "contact" : "Kontakt",
+            "vatRateHigh" : "Vysoká sazba",
+            "vatRateFirstLower" : "První snížená sazba",
+            "vatRateSecondLower" : "Druhá snížená sazba",
+            "vatAmount" : "Dan",
+            "priceNoVat" : "Cena zboží s nulovou DPH",
+            "priceVatHigh" : "Cena zboží s vysokou sazbou DPH",
+            "priceVatFirstLower" : "Cena zboží s první sníženou sazbou DPH",
+            "priceVatSecondLower" : "Cena zboží s druhou sníženou sazbou DPH",
+            "priceWitouthVat" : "Cena zboží bez DPH",
+            "totalPriceVatHigh" : "Celková cena zboží s vysokou sazbou DPH",
+            "totalPriceVatFirstLower" : "Celková cena zboží s první sníženou sazbou DPH",
+            "totalPriceVatSecondLower" : "Celková cena zboží s druhou sníženou sazbou DPH",
+            "totalPrice" : "Celková cena",
+            "status" : "Stav",
+            "numSer" : "Číslo",
+            "payDateTime" : "Datum zaplacení",
+            "saveDateTime" : "Datum uložení",
+            "insertDate" : "Datum vložení"
+        }
+    },
+    "reports" : [
+        { "name" : "Přehled projektu", "description" : "Detail projektu s rozpisem položek", "listReport" : 1, "file" : "project.lrxml" }
+    ]
+}

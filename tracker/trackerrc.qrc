@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icons/tracker_48x48.png</file>
+        <file>icons/done_48x48.png</file>
+        <file>icons/start_48x48.png</file>
+        <file>icons/removeLast_48x48.png</file>
+        <file>icons/stop_48x48.png</file>
+        <file>icons/reactivate_48x48.png</file>
+    </qresource>
+</RCC>
