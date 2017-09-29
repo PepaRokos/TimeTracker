@@ -38,6 +38,11 @@ HEADERS  += mainwindow.h \
 FORMS    += mainwindow.ui \
     logindialog.ui
 
+unix {
+    target.path = /usr/local/bin
+    INSTALLS += target
+    QMAKE_CXXFLAGS += -Wno-unknown-pragmas
+}
 
 unix{
     ARCH_TYPE      = unix

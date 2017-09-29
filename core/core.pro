@@ -12,7 +12,8 @@ TARGET = core
 TEMPLATE = lib
 
 DEFINES += CORE_LIBRARY \
-           _GLIBCXX_USE_CXX11_ABI=1
+           _GLIBCXX_USE_CXX11_ABI=1 \
+           APP_NAME=\\\"timetracker\\\"
 
 CONFIG += c++11
 
@@ -139,7 +140,7 @@ HEADERS += core.h\
     reporting/variablefiller.h
 
 unix {
-    target.path = /usr/lib
+    target.path = /usr/local/lib/timetracker
     INSTALLS += target
     QMAKE_CXXFLAGS += -Wno-unknown-pragmas
 }
@@ -182,10 +183,8 @@ OTHER_FILES += \
 CONFIG(debug, release|debug):DEFINES += _DEBUG
 
 win32:CONFIG(release, debug|release):DEFINES += PLUGIN_ROOT=\\\"/plugins\\\"
-else:unix:CONFIG(release, debug|release):DEFINES += PLUGIN_ROOT=\\\"/usr/lib/prodejna/plugins\\\"
 
 win32:CONFIG(release, debug|release):DEFINES += REPORT_ROOT=\\\"/reports\\\"
-else:unix:CONFIG(release, debug|release):DEFINES += REPORT_ROOT=\\\"/usr/share/prodejna/reports\\\"
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../qdecimal/lib/ -lqdecimal -ldecnumber
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../qdecimal/lib/ -lqdecimal -ldecnumber

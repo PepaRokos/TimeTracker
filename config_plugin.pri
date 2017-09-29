@@ -1,9 +1,11 @@
-DEFINES += _GLIBCXX_USE_CXX11_ABI=1
+DEFINES += _GLIBCXX_USE_CXX11_ABI=1 \
+            APP_NAME=timetracker
+
 CONFIG += c++11
 
 
 unix {
-    target.path = /usr/lib
+    target.path = /usr/local/lib/timetracker/plugins
     INSTALLS += target
     QMAKE_CXXFLAGS += -Wno-unknown-pragmas
 }
