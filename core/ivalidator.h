@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QString>
+#include <QSharedPointer>
 
 #include "core_global.h"
 
@@ -30,6 +31,8 @@ protected:
 private:
     QString m_errMessage;
 };
+
+typedef QSharedPointer<IValidator> IValidatorPtr;
 
 #endif // IVALIDATOR_H
 

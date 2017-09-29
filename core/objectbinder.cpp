@@ -18,7 +18,7 @@ void ObjectBinder::registerBinding(QComboBox *combo, const QList<ComboData> &val
 }
 
 void ObjectBinder::registerValidator(IValidator *validator) {
-    m_validators.append(validator);
+    m_validators.append(IValidatorPtr(validator));
 }
 
 void ObjectBinder::setData(QObject *data)
@@ -66,7 +66,7 @@ void ObjectBinder::bindToUi() {
 }
 
 bool ObjectBinder::bindToData() {
-    foreach (IValidator *val, m_validators) {
+    foreach (IValidatorPtr val, m_validators) {
         if (!val->validate()) {
             emit validationError(val->errMessage());
             return false;

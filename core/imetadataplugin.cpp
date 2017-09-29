@@ -75,7 +75,10 @@ void IMetaDataPlugin::init(const QJsonObject &metaData)
 
 void IMetaDataPlugin::parseMetaData(const QJsonObject &metaData)
 {
+#ifdef _DEBUG
     qDebug() << metaData;
+#endif
+
     QJsonValue data = metaData["MetaData"];
     if (!data.isObject()) {
         return;

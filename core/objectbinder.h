@@ -30,7 +30,7 @@ signals:
 private:
     QList<QWidget*> m_bindWidgets;
     QHash<QComboBox*, QList<ComboData> > m_bindCombos;
-    QList<IValidator*> m_validators;
+    QList<IValidatorPtr> m_validators;
     QObject *m_data;
 };
 
