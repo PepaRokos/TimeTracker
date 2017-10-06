@@ -19,6 +19,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     m_loginDialog = new LoginDialog(this);
 
+    ui->tabWidget->setVisible(false);
+
     QFile styleFile(":/style.css");
 
     if (styleFile.open(QIODevice::ReadOnly | QIODevice::Text))
@@ -29,9 +31,12 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(m_loginDialog, &LoginDialog::accepted, [this]{
         PermissionService service;
         QSharedPointer<User> u = service.loadUser(m_loginDialog->login());
-        m_lblUser->setText(u->name());
-        m_loginDialog->reset();
         Context::instance().setCurrentUser(u);
+
+        m_lblUser->setText(u->name());
+        ui->labelUser->setText(u->name());
+        openDashboard();
+        m_loginDialog->reset();
     });
 
     connect(m_loginDialog, &LoginDialog::rejected, [this]{
@@ -54,6 +59,7 @@ MainWindow::MainWindow(QWidget *parent) :
             plugButton->setProperty(PLUGIN_INDEX, i);
             connect(plugButton, SIGNAL(clicked()), this, SLOT(openPlugin()) );
         }
+
         i++;
     }
 
@@ -86,11 +92,8 @@ void MainWindow::openPlugin()
 
 void MainWindow::on_actionOpen_database_triggered()
 {
-    int tabCount = ui->tabWidget->count();
-    for (int i = 0; i < tabCount; i++)
-    {
-        ui->tabWidget->removeTab(0);
-    }
+    closaAllTabs();
+    closeDashboard();
 
     QString dbFile = QFileDialog::getOpenFileName(this, "Open Database", "", "Database Files (*.db)");
     if (!dbFile.isEmpty())
@@ -104,15 +107,20 @@ void MainWindow::on_actionOpen_database_triggered()
 void MainWindow::on_tabWidget_tabCloseRequested(int index)
 {
     ui->tabWidget->removeTab(index);
+
+    if (ui->tabWidget->count() == 0)
+    {
+        ui->dashboard->setVisible(true);
+        ui->tabWidget->setVisible(false);
+
+        refreshDashboard();
+    }
 }
 
 void MainWindow::on_actionLogin_triggered()
 {
-    int tabCount = ui->tabWidget->count();
-    for (int i = 0; i < tabCount; i++)
-    {
-        ui->tabWidget->removeTab(0);
-    }
+    closaAllTabs();
+    closeDashboard();
 
     QSharedPointer<User> u;
     Context::instance().setCurrentUser(u);
@@ -153,6 +161,9 @@ void MainWindow::on_actionPost_register_triggered()
 
 void MainWindow::openPlugin(IPlugin *plugin)
 {
+    ui->tabWidget->setVisible(true);
+    ui->dashboard->setVisible(false);
+
     for (int i = 0; i < ui->tabWidget->count(); i++) {
         if (ui->tabWidget->widget(i)->objectName() == plugin->pluginId()) {
             ui->tabWidget->setCurrentIndex(i);
@@ -165,6 +176,61 @@ void MainWindow::openPlugin(IPlugin *plugin)
         ui->tabWidget->addTab(plugin->ui(), plugin->pluginIcon(), plugin->pluginName());
         ui->tabWidget->widget(ui->tabWidget->count() - 1)->setObjectName(plugin->pluginId());
         ui->tabWidget->setCurrentIndex(ui->tabWidget->count() - 1);
+    }
+}
+
+void MainWindow::closeDashboard()
+{
+    foreach (QFrame *dbFrame, m_dbWidgets) {
+        dbFrame->setVisible(false);
+    }
+}
+
+void MainWindow::openDashboard()
+{
+    PermissionEvaluator permEv;
+
+    foreach (IPlugin *plugin, Context::instance().plugins()) {
+        if (!plugin->dasboardWidgets().isEmpty()
+                && permEv.hasPermission(plugin->pluginId(), PERM_READ)) {
+            foreach (QFrame *frame, plugin->dasboardWidgets()) {
+                if (m_dbWidgets.contains(frame))
+                {
+                    frame->setVisible(true);
+                }
+                else
+                {
+                    ui->dbWidget->layout()->addWidget(frame);
+                    m_dbWidgets.append(frame);
+                }
+            }
+        }
+    }
+
+    refreshDashboard();
+}
+
+void MainWindow::refreshDashboard()
+{
+    foreach (QFrame *frame, m_dbWidgets) {
+        IDashboardWidget *dbWidget = dynamic_cast<IDashboardWidget*>(frame);
+
+        if (dbWidget != nullptr)
+        {
+            dbWidget->refresh();
+        }
+    }
+}
+
+void MainWindow::closaAllTabs()
+{
+    ui->tabWidget->setVisible(false);
+    ui->dashboard->setVisible(true);
+
+    int tabCount = ui->tabWidget->count();
+    for (int i = 0; i < tabCount; i++)
+    {
+        ui->tabWidget->removeTab(0);
     }
 }
 

@@ -70,6 +70,10 @@ public:
         return filled ? m_ui : NULL;
     }
 
+    QList<QFrame*> dasboardWidgets() {
+        return m_dashboardWidgets;
+    }
+
     virtual QWidget *settingsUi() {
         return m_settingsUi;
     }
@@ -103,6 +107,7 @@ protected:
     QWidget *m_settingsUi;
     IService *m_service;
     QMap<QString, QString> m_translations;
+    QList<QFrame*> m_dashboardWidgets;
 };
 
 #define PluginInterface_iid "cz.itsolved.prodejna.IPlugin"

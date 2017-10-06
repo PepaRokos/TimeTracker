@@ -137,7 +137,8 @@ HEADERS += core.h\
     iimportprogress.h \
     importdialog.h \
     importprogress.h \
-    reporting/variablefiller.h
+    reporting/variablefiller.h \
+    idashboardwidget.h
 
 unix {
     target.path = /usr/local/lib/timetracker

@@ -47,7 +47,13 @@ private:
     Ui::MainWindow *ui;
     LoginDialog *m_loginDialog;
     QLabel *m_lblUser;
+    QList<QFrame*> m_dbWidgets;
+
     void openPlugin(IPlugin *plugin);
+    void closeDashboard();
+    void openDashboard();
+    void refreshDashboard();
+    void closaAllTabs();
 
     // QWidget interface
 protected:

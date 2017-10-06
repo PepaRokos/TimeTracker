@@ -13,5 +13,6 @@
 #include "settingsform.h"
 #include "enums.h"
 #include "objectbinder.h"
+#include "idashboardwidget.h"
 
 #endif // CORE_H
