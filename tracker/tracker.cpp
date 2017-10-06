@@ -3,6 +3,7 @@
 #include "trackergrid.h"
 #include "trackerform.h"
 #include "trackerservice.h"
+#include "trackeroverview.h"
 
 Tracker::Tracker()
 {
@@ -16,6 +17,8 @@ void Tracker::initServiceUi()
     m_service = new TrackerService();
     m_ui = grid;
     ((TrackerGrid *) m_ui)->setForm(form);
+
+    m_dashboardWidgets << new TrackerOverview();
 }
 
 QIcon Tracker::pluginIcon()

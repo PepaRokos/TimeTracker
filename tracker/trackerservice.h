@@ -15,6 +15,8 @@ public:
     void updateProject(ProjectPtr project);
     void deleteProject(ProjectPtr project);
     TimeLogPtr activeLog(ProjectPtr project);
+    ProjectSum activeSummary();
+    ProjectSum delayedSummary();
 };
 
 #endif // TRACKERSERVICE_H

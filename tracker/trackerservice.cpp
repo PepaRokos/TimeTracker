@@ -94,3 +94,31 @@ TimeLogPtr TrackerService::activeLog(ProjectPtr project)
 
     return TimeLogPtr();
 }
+
+ProjectSum TrackerService::activeSummary()
+{
+    Transaction tr;
+    odb::database *db = Context::instance().db();
+
+    typedef odb::query<ProjectSum> query;
+
+    ProjectSum sum = db->query_value<ProjectSum>("active = " + query::_ref(true));
+
+    tr.commit();
+
+    return sum;
+}
+
+ProjectSum TrackerService::delayedSummary()
+{
+    Transaction tr;
+    odb::database *db = Context::instance().db();
+
+    typedef odb::query<ProjectSum> query;
+
+    ProjectSum sum = db->query_value<ProjectSum>("dueTo < " + query::_ref(QDateTime::currentDateTime()) + " and active = " + query::_ref(true));
+
+    tr.commit();
+
+    return sum;
+}

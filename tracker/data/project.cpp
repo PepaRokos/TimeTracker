@@ -133,3 +133,23 @@ void Project::setTotalTime(const QTime &totalTime)
 {
     m_totalTime = totalTime;
 }
+
+////////////////////////////////////////////////////////////////////////
+/// \brief ProjectSum::ProjectSum
+///
+
+ProjectSum::ProjectSum()
+{
+    m_count = 0;
+    m_totalPrice = 0;
+}
+
+QDecDouble ProjectSum::totalPrice() const
+{
+    return TO_DEC(m_totalPrice);
+}
+
+void ProjectSum::setTotalPrice(QDecDouble totalPrice)
+{
+    m_totalPrice = FROM_DEC(totalPrice);
+}

@@ -22,7 +22,8 @@ SOURCES += tracker.cpp \
     startworkdialog.cpp \
     enddialog.cpp \
     trackerservice.cpp \
-    clientdialog.cpp
+    clientdialog.cpp \
+    trackeroverview.cpp
 
 HEADERS += tracker.h\
         tracker_global.h \
@@ -36,7 +37,8 @@ HEADERS += tracker.h\
     startworkdialog.h \
     enddialog.h \
     trackerservice.h \
-    clientdialog.h
+    clientdialog.h \
+    trackeroverview.h
 
 unix {
     target.path = /usr/lib
@@ -61,4 +63,5 @@ FORMS += \
     projectdetail.ui \
     startworkdialog.ui \
     enddialog.ui \
-    clientdialog.ui
+    clientdialog.ui \
+    trackeroverview.ui

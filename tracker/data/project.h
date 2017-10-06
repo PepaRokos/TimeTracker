@@ -82,4 +82,18 @@ private:
     int m_totalPrice;
 };
 
+#pragma db view object(Project)
+struct ProjectSum
+{
+    ProjectSum();
+
+    QDecDouble totalPrice() const;
+    void setTotalPrice(QDecDouble totalPrice);
+
+    #pragma db column("count(id)")
+    int m_count;
+    #pragma db column("sum(totalPrice)")
+    int m_totalPrice;
+};
+
 #endif // PROJECT_H
