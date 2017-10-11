@@ -143,6 +143,11 @@ HEADERS += core.h\
 unix {
     target.path = /usr/local/lib/timetracker
     INSTALLS += target
+
+    ldconf.path = /etc/ld.so.conf.d
+    ldconf.files = ld.conf/*
+    INSTALLS += ldconf
+
     QMAKE_CXXFLAGS += -Wno-unknown-pragmas
 }
 

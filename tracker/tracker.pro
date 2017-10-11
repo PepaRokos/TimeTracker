@@ -42,17 +42,18 @@ HEADERS += tracker.h\
     trackeroverview.h \
     datebeforevalidator.h
 
-unix {
-    target.path = /usr/lib
-    INSTALLS += target
-}
-
 include(../config_plugin.pri)
 
 ODB_FILES = tracker/data/tracker-data.h
 H_DIR = $$PWD/data/*.h
 #ODB_OTHER_INCLUDES = -I $$PWD/../shop
 include(../odb.pri)
+
+unix {
+    reports.path = /usr/local/share/timetracker/reports
+    reports.files = reports/*
+    INSTALLS += reports
+}
 
 DISTFILES += \
     tracker.json
