@@ -1,0 +1,36 @@
+{
+    "id" : "ADDRESSBOOK",
+    "name" : {
+        "default" : "Addressbook",
+        "CZ" : "Adresář"
+    },
+    "descriptoin" : {
+        "default" : "",
+        "CZ" : ""
+    },
+    "schemaVersion" : 1,
+    "sql" : [
+        "CREATE TABLE \"Address\" (
+  \"id\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  \"company\" TEXT NULL,
+  \"ic\" TEXT NULL,
+  \"dic\" TEXT NULL,
+  \"contactName\" TEXT NULL,
+  \"email\" TEXT NULL,
+  \"web\" TEXT NULL,
+  \"street\" TEXT NULL,
+  \"houseNumbre\" TEXT NULL,
+  \"city\" TEXT NULL,
+  \"zipCode\" TEXT NULL,
+  \"note\" TEXT NULL);"
+    ],
+    "dependencies" : [  ],
+    "translations" : {
+        "CZ" : {
+
+        }
+    },
+    "reports" : [
+
+    ]
+}
