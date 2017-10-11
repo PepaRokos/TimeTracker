@@ -42,6 +42,12 @@ void ProjectDetail::setCurrent(ProjectPtr project)
 void ProjectDetail::on_btnStart_clicked()
 {
     StartWorkDialog *dlg = new StartWorkDialog(m_currentProject->pricePerHour(), this);
+
+    if (!m_currentProject->timeLog().isEmpty())
+    {
+        dlg->setRefDateTime(m_currentProject->timeLog().last()->end());
+    }
+
     dlg->setAttribute(Qt::WA_DeleteOnClose);
     dlg->show();
 
@@ -57,14 +63,20 @@ void ProjectDetail::on_btnStart_clicked()
 
 void ProjectDetail::on_btnStop_clicked()
 {
+    TrackerService srv;
+    TimeLogPtr lastLog = srv.activeLog(m_currentProject);
+
     EndDialog *dlg = new EndDialog(this);
+
+    if (!lastLog.isNull())
+    {
+        dlg->setRefDateTime(lastLog->start());
+    }
+
     dlg->setAttribute(Qt::WA_DeleteOnClose);
     dlg->show();
 
-    connect(dlg, &QDialog::accepted, [this, dlg](){
-        TrackerService srv;
-        TimeLogPtr lastLog = srv.activeLog(m_currentProject);
-
+    connect(dlg, &QDialog::accepted, [this, &srv, lastLog, dlg](){
         if (!lastLog.isNull())
         {
             lastLog->setEnd(dlg->end());
@@ -81,6 +93,11 @@ void ProjectDetail::on_btnStop_clicked()
 
 void ProjectDetail::on_btnRemoveLast_clicked()
 {
+    if (QMessageBox::question(this, tr("Delete last task."), tr("Really delete last task?")) == QMessageBox::No)
+    {
+        return;
+    }
+
     m_currentProject->removeLastLog();
     TrackerService srv;
 

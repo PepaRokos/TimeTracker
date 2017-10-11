@@ -7,19 +7,6 @@
 #include "data/project.h"
 #include "tracker-odb.hxx"
 
-class DateValidator : public IValidator
-{
-public:
-    DateValidator(QWidget *widget, const QString &message, QDateTimeEdit *startEdit);
-
-    // IValidator interface
-public:
-    virtual bool validate() override;
-
-private:
-    QDateTimeEdit *m_startEdit;
-};
-
 namespace Ui {
 class TrackerForm;
 }

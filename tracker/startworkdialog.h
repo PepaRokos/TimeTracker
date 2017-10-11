@@ -2,6 +2,7 @@
 #define STARTWORKDIALOG_H
 
 #include <QDialog>
+#include <QDateTime>
 #include "data/timelog.h"
 #include <core.h>
 
@@ -17,11 +18,13 @@ public:
     explicit StartWorkDialog(QDecDouble pricePerHour, QWidget *parent = 0);
     ~StartWorkDialog();
     TimeLogPtr log();
+    void setRefDateTime(const QDateTime &dateTime);
 
 private:
     Ui::StartWorkDialog *ui;
     TimeLogPtr m_timeLog;
     ObjectBinder m_binder;
+    QDateTime m_refDateTime;
 
     // QDialog interface
 public slots:

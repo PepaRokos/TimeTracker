@@ -23,7 +23,8 @@ SOURCES += tracker.cpp \
     enddialog.cpp \
     trackerservice.cpp \
     clientdialog.cpp \
-    trackeroverview.cpp
+    trackeroverview.cpp \
+    datebeforevalidator.cpp
 
 HEADERS += tracker.h\
         tracker_global.h \
@@ -38,7 +39,8 @@ HEADERS += tracker.h\
     enddialog.h \
     trackerservice.h \
     clientdialog.h \
-    trackeroverview.h
+    trackeroverview.h \
+    datebeforevalidator.h
 
 unix {
     target.path = /usr/lib
