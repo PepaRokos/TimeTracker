@@ -189,8 +189,8 @@ protected:
             return;
         }
 
-        form()->setEntity(QSharedPointer<T>(new T()));
         form()->setNewRec(true);
+        form()->setEntity(QSharedPointer<T>(new T()));
         m_formHandler->showForm(m_form);
     }
 
@@ -207,8 +207,8 @@ protected:
             return;
         }
 
-        form()->setEntity(m_tableModel->itemFromIndex(tableView()->currentIndex()));
         form()->setNewRec(false);
+        form()->setEntity(m_tableModel->itemFromIndex(tableView()->currentIndex()));
         m_formHandler->showForm(m_form);
     }
 

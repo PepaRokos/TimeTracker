@@ -44,6 +44,7 @@ void ObjectBinder::bindToUi() {
         int idx = 0;
         QVariant field = m_data->property(combo->objectName().toStdString().c_str());
 
+        bool signalState = combo->blockSignals(true);
         combo->clear();
         for (int i = 0; i < m_bindCombos[combo].size(); i++) {
             ComboData data = m_bindCombos[combo][i];
@@ -62,6 +63,7 @@ void ObjectBinder::bindToUi() {
         }
 
         combo->setCurrentIndex(idx);
+        combo->blockSignals(signalState);
     }
 }
 
