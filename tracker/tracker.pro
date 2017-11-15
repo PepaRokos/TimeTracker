@@ -46,7 +46,7 @@ include(../config_plugin.pri)
 
 ODB_FILES = tracker/data/tracker-data.h
 H_DIR = $$PWD/data/*.h
-#ODB_OTHER_INCLUDES = -I $$PWD/../shop
+ODB_OTHER_INCLUDES = -I $$PWD/../addressbook/data -I $$PWD/../addressbook
 include(../odb.pri)
 
 unix {
@@ -68,3 +68,11 @@ FORMS += \
     enddialog.ui \
     clientdialog.ui \
     trackeroverview.ui
+
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../plugins/ -laddressbook
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../plugins/ -laddressbook
+else:unix: LIBS += -L$$OUT_PWD/../plugins/ -laddressbook
+
+INCLUDEPATH += $$PWD/../addressbook/data
+INCLUDEPATH += $$PWD/../addressbook
+DEPENDPATH += $$PWD/../addressbook

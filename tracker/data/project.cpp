@@ -38,6 +38,11 @@ QSharedPointer<QObject> Project::client() const
 
 void Project::setClient(const QSharedPointer<QObject> &client)
 {
+    if (client.isNull())
+    {
+        m_client = ClientPtr();
+    }
+
     if (qobject_cast<Client*>(client.data()) != nullptr)
     {
         m_client = qSharedPointerCast<Client, QObject>(client);

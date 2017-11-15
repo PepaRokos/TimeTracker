@@ -7,8 +7,10 @@
 #include <comboitem.h>
 #include <odb/core.hxx>
 
+#include "addressbook_global.h"
+
 #pragma db object
-class Address : public ComboItem
+class ADDRESSBOOKSHARED_EXPORT Address : public ComboItem
 {
     Q_OBJECT
     Q_PROPERTY(QString company READ company WRITE setCompany)
@@ -16,7 +18,7 @@ class Address : public ComboItem
     Q_PROPERTY(QString dic READ dic WRITE setDic)
     Q_PROPERTY(QString contactName READ contactName WRITE setContactName)
     Q_PROPERTY(QString street READ street WRITE setStreet)
-    Q_PROPERTY(QString houseNumbre READ houseNumbre WRITE setHouseNumbre)
+    Q_PROPERTY(QString houseNumber READ houseNumber WRITE setHouseNumber)
     Q_PROPERTY(QString city READ city WRITE setCity)
     Q_PROPERTY(QString zipCode READ zipCode WRITE setZipCode)
     Q_PROPERTY(QString email READ email WRITE setEmail)
@@ -44,8 +46,8 @@ public:
     QString street() const;
     void setStreet(const QString &street);
 
-    QString houseNumbre() const;
-    void setHouseNumbre(const QString &houseNumbre);
+    QString houseNumber() const;
+    void setHouseNumber(const QString &houseNumber);
 
     QString city() const;
     void setCity(const QString &city);
@@ -84,5 +86,7 @@ public:
     virtual bool eq(ComboItem *other) override;
     virtual QString toString() override;
 };
+
+typedef QSharedPointer<Address> AddressPtr;
 
 #endif // ADDRESS_H

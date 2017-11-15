@@ -5,5 +5,6 @@ SUBDIRS += \
     qdecimal \ 
     core \
     application \ 
-    tracker \
-    addressbook
+    addressbook \
+    tracker
+

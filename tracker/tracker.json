@@ -8,7 +8,7 @@
         "default" : "",
         "CZ" : ""
     },
-    "schemaVersion" : 2,
+    "schemaVersion" : 3,
     "sql" : [
        "CREATE TABLE \"Client\" (
   \"id\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
@@ -49,9 +49,11 @@ CREATE TABLE \"TimeLog\" (
     REFERENCES \"Project\" (\"id\")
     DEFERRABLE INITIALLY DEFERRED);",
 
-"ALTER TABLE Project ADD totalTime TEXT NULL;"
+"ALTER TABLE Project ADD totalTime TEXT NULL;",
+
+"ALTER TABLE Client ADD addressId INTEGER NULL;"
     ],
-    "dependencies" : [  ],
+    "dependencies" : [ "ADDRESSBOOK" ],
     "translations" : {
         "CZ" : {
             "name" : "Název",

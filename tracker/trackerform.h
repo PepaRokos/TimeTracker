@@ -7,6 +7,8 @@
 #include "data/project.h"
 #include "tracker-odb.hxx"
 
+#include <addresswidget.h>
+
 namespace Ui {
 class TrackerForm;
 }
@@ -22,11 +24,14 @@ public:
 private:
     Ui::TrackerForm *ui;
 
+    AddressWidget *m_addrWidget;
+    bool m_newClient;
+
     // FormBinder interface
 protected:
-    void registerCombos();
-private slots:
-    void on_btnNewClient_clicked();
+    void bindOtherToUi();
+    bool bindOtherToData();
+
 };
 
 #endif // TRACKERFORM_H

@@ -26,21 +26,28 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += addressbook.cpp \
     data/address.cpp \
     addressgrid.cpp \
-    addressform.cpp
+    addressform.cpp \
+    addressservice.cpp \
+    addresswidget.cpp \
+    addrwidgetentity.cpp
 
 HEADERS += addressbook.h\
         addressbook_global.h \
     data/address.h \
     data/addressbook-data.h \
     addressgrid.h \
-    addressform.h
+    addressform.h \
+    addressservice.h \
+    iaddressable.h \
+    addresswidget.h \
+    addrwidgetentity.h
 
 
 include(../config_plugin.pri)
 
 ODB_FILES = addressbook/data/addressbook-data.h
 H_DIR = $$PWD/data/*.h
-#ODB_OTHER_INCLUDES = -I $$PWD/../shop
+ODB_OTHER_INCLUDES = -I $$PWD
 include(../odb.pri)
 
 DISTFILES += \
@@ -50,4 +57,5 @@ RESOURCES += \
     addressbook.qrc
 
 FORMS += \
-    addressform.ui
+    addressform.ui \
+    addresswidget.ui

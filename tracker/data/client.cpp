@@ -75,6 +75,29 @@ void Client::setDic(const QString &dic)
     m_dic = dic;
 }
 
+QSharedPointer<QObject> Client::addressId() const
+{
+    return m_addressId;
+}
+
+void Client::setAddressId(const QSharedPointer<QObject> &addressId)
+{
+    if (qobject_cast<Address*>(addressId.data()) != nullptr)
+    {
+        m_addressId = qSharedPointerCast<Address, QObject>(addressId);
+    }
+}
+
+AddressPtr Client::addressIdPtr() const
+{
+    return m_addressId;
+}
+
+void Client::setAddressIdPtr(const AddressPtr &addressId)
+{
+    m_addressId = addressId;
+}
+
 QString Client::ic() const
 {
     return m_ic;

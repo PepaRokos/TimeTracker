@@ -16,11 +16,11 @@ int main(int argc, char *argv[])
 {
     Application a(argc, argv);
 
-    if (!a.lock())
+    /*if (!a.lock())
     {
         QMessageBox::warning(NULL, "Prodejna is running", "Prodejna is allready running. Only one instance can be started.");
         return -42;
-    }
+    }*/
 
 #ifdef _WIN32
     QString exePath = a.applicationDirPath();

@@ -7,16 +7,21 @@
 #include <odb/core.hxx>
 #include <comboitem.h>
 
+#include <addressbook-data.h>
+#include <iaddressable.h>
+
 #pragma db object
-class Client : public ComboItem
+class Client : public ComboItem, public IAddressable
 {
     Q_PROPERTY(QString name READ name WRITE setName)
+    Q_PROPERTY(QString company READ company WRITE setCompany)
     Q_PROPERTY(QString ic READ ic WRITE setIc)
     Q_PROPERTY(QString dic READ dic WRITE setDic)
     Q_PROPERTY(QString street READ street WRITE setStreet)
     Q_PROPERTY(QString houseNumber READ houseNumber WRITE setHouseNumber)
     Q_PROPERTY(QString city READ city WRITE setCity)
     Q_PROPERTY(QString zipCode READ zipCode WRITE setZipCode)
+    Q_PROPERTY(QSharedPointer<QObject> addressId READ addressId WRITE setAddressId)
 
     Q_OBJECT
 public:
@@ -27,6 +32,9 @@ public:
 
     QString name() const;
     void setName(const QString &name);
+
+    QString company() const { return name(); }
+    void setCompany(const QString &comapny) { setName(comapny); }
 
     QString street() const;
     void setStreet(const QString &street);
@@ -46,6 +54,12 @@ public:
     QString dic() const;
     void setDic(const QString &dic);
 
+    QSharedPointer<QObject> addressId() const;
+    void setAddressId(const QSharedPointer<QObject> &addressId);
+
+    AddressPtr addressIdPtr() const;
+    void setAddressIdPtr(const AddressPtr &addressId);
+
 private:
     friend class odb::access;
 #pragma db id auto
@@ -58,6 +72,7 @@ private:
     QString m_houseNumber;
     QString m_city;
     QString m_zipCode;
+    AddressPtr m_addressId;
 
     // ComboItem interface
 public:

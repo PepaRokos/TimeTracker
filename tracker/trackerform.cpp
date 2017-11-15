@@ -5,6 +5,7 @@
 #include "datebeforevalidator.h"
 
 #include <emptystringvalidator.h>
+#include <addressservice.h>
 
 TrackerForm::TrackerForm(QWidget *parent) :
     AutoForm<Project>(parent),
@@ -21,6 +22,23 @@ TrackerForm::TrackerForm(QWidget *parent) :
     registerValidator(dateValidator);
     IValidator *nameValidator = new EmptyStringValidator(ui->name, tr("Project name cannot by empty."));
     registerValidator(nameValidator);
+
+    m_addrWidget = new AddressWidget(this);
+    ui->widgetAddr->layout()->addWidget(m_addrWidget);
+
+    connect(m_addrWidget, &AddressWidget::addressChecked, [this](){
+        if (entity()->client().isNull())
+        {
+            AddressService srv;
+            ClientPtr client = ClientPtr(new Client());
+            srv.copyAddress(m_addrWidget->targetEntity().data(), client.data());
+            entity()->setClient(client);
+            m_addrWidget->setTargetEntity(client);
+            m_newClient = true;
+        }
+    });
+
+    m_newClient = false;
 }
 
 TrackerForm::~TrackerForm()
@@ -28,23 +46,50 @@ TrackerForm::~TrackerForm()
     delete ui;
 }
 
-void TrackerForm::registerCombos()
+void TrackerForm::bindOtherToUi()
 {
-    Service<Client> srv;
-    registerBinding(ui->client, ComboData::createComboData(srv.all("ORDER BY name")));
+    ProjectPtr project = entity();
+
+    if (!project->client().isNull())
+    {
+        m_addrWidget->setTargetEntity(qSharedPointerDynamicCast<IAddressable, QObject>(project->client()));
+    }
+    else if (m_newRec)
+    {
+        ClientPtr client = ClientPtr(new Client());
+        entity()->setClient(client);
+
+        m_addrWidget->setTargetEntity(client);
+        m_newClient = true;
+    }
+    else
+    {
+        m_addrWidget->setTargetEntity(ClientPtr());
+    }
 }
 
-void TrackerForm::on_btnNewClient_clicked()
+bool TrackerForm::bindOtherToData()
 {
-    ClientDialog *dlg = new ClientDialog(this);
-    dlg->setAttribute(Qt::WA_DeleteOnClose);
-    dlg->show();
+    m_addrWidget->bindToData();
 
-    connect(dlg, &QDialog::accepted, [this, dlg](){
-        Service<Client> srv;
-        srv.save(dlg->client());
+    if (m_addrWidget->hasAddress())
+    {
+        Service<Client> srvClient;
 
-        registerBinding(ui->client, ComboData::createComboData(srv.all("ORDER BY name")));
-        bindToUi();
-    });
+        if (m_newClient)
+        {
+            srvClient.save(qSharedPointerDynamicCast<Client, QObject>(entity()->client()));
+        }
+        else
+        {
+            srvClient.update(qSharedPointerDynamicCast<Client, QObject>(entity()->client()));
+        }
+    }
+    else
+    {
+        entity()->setClient(ClientPtr());
+    }
+
+    return true;
 }
+

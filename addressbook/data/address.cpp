@@ -65,12 +65,12 @@ void Address::setStreet(const QString &street)
     m_street = street;
 }
 
-QString Address::houseNumbre() const
+QString Address::houseNumber() const
 {
     return m_houseNumbre;
 }
 
-void Address::setHouseNumbre(const QString &houseNumbre)
+void Address::setHouseNumber(const QString &houseNumbre)
 {
     m_houseNumbre = houseNumbre;
 }
