@@ -22,12 +22,12 @@ INCLUDEPATH += $$PWD/core
 INCLUDEPATH += $$PWD/core/data
 DEPENDPATH += $$PWD/core
 
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../qdecimal/lib/ -lqdecimal -ldecnumber
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../qdecimal/lib/ -lqdecimal -ldecnumber
-else:unix: LIBS += -L$$OUT_PWD/../qdecimal/lib/ -lqdecimal -ldecnumber
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../3rd/qdecimal/lib/ -lqdecimal -ldecnumber
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../3rd/qdecimal/lib/ -lqdecimal -ldecnumber
+else:unix: LIBS += -L$$OUT_PWD/../3rd/qdecimal/lib/ -lqdecimal -ldecnumber
 
-INCLUDEPATH += $$PWD/qdecimal/src
-INCLUDEPATH += $$PWD/qdecimal/decnumber
-DEPENDPATH += $$PWD/qdecimal/src
+INCLUDEPATH += $$PWD/3rd/qdecimal/src
+INCLUDEPATH += $$PWD/3rd/qdecimal/decnumber
+DEPENDPATH += $$PWD/3rd/qdecimal/src
 
 DESTDIR = ../plugins

@@ -71,7 +71,8 @@ SOURCES += \
     csvimporter.cpp \
     importdialog.cpp \
     importprogress.cpp \
-    reporting/variablefiller.cpp
+    reporting/variablefiller.cpp \
+    users/userservice.cpp
 
 HEADERS += core.h\
         core_global.h \
@@ -138,7 +139,8 @@ HEADERS += core.h\
     importdialog.h \
     importprogress.h \
     reporting/variablefiller.h \
-    idashboardwidget.h
+    idashboardwidget.h \
+    users/userservice.h
 
 unix {
     target.path = /usr/local/lib/timetracker
@@ -192,12 +194,12 @@ win32:CONFIG(release, debug|release):DEFINES += PLUGIN_ROOT=\\\"/plugins\\\"
 
 win32:CONFIG(release, debug|release):DEFINES += REPORT_ROOT=\\\"/reports\\\"
 
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../qdecimal/lib/ -lqdecimal -ldecnumber
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../qdecimal/lib/ -lqdecimal -ldecnumber
-else:unix: LIBS += -L$$OUT_PWD/../qdecimal/lib/ -lqdecimal -ldecnumber
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../3rd/qdecimal/lib/ -lqdecimal -ldecnumber
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../3rd/qdecimal/lib/ -lqdecimal -ldecnumber
+else:unix: LIBS += -L$$OUT_PWD/../3rd/qdecimal/lib/ -lqdecimal -ldecnumber
 
-INCLUDEPATH += $$PWD/../qdecimal/src
-INCLUDEPATH += $$PWD/../qdecimal/decnumber
+INCLUDEPATH += $$PWD/../3rd/qdecimal/src
+INCLUDEPATH += $$PWD/../3rd/qdecimal/decnumber
 
 unix{
     ARCH_TYPE      = unix
@@ -216,11 +218,11 @@ win32 {
     ARCH_TYPE      = win32
 }
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../LimeReport/build/$${QT_VERSION}/$${ARCH_TYPE}/release/lib/ -llimereport
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../LimeReport/build/$${QT_VERSION}/$${ARCH_TYPE}/debug/lib/ -llimereport
-else:unix: LIBS += -L$$PWD/../../LimeReport/build/$${QT_VERSION}/$${ARCH_TYPE}/debug/lib/ -llimereport
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../3rd/LimeReport/build/$${QT_VERSION}/$${ARCH_TYPE}/release/lib/ -llimereport
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../3rd/LimeReport/build/$${QT_VERSION}/$${ARCH_TYPE}/debug/lib/ -llimereport
+else:unix: LIBS += -L$$PWD/../3rd/LimeReport/build/$${QT_VERSION}/$${ARCH_TYPE}/debug/lib/ -llimereport
 
-INCLUDEPATH += $$PWD/../../LimeReport/include
-DEPENDPATH += $$PWD/../../LimeReport/include
+INCLUDEPATH += $$PWD/../3rd/LimeReport/include
+DEPENDPATH += $$PWD/../3rd/LimeReport/include
 
 TRANSLATIONS = translations/core_cs_CZ.ts

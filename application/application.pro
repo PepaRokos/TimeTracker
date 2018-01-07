@@ -62,11 +62,11 @@ unix {
     QMAKE_CXXFLAGS += -Wno-unknown-pragmas
 
     CONFIG(debug, debug|release) {
-        LIBS += -L$$PWD/../../LimeReport/build/$${QT_VERSION}/$${ARCH_TYPE}/debug/lib/ -llimereport -lQtZint
-        #QMAKE_CXXFLAGS += -Wl,-rpath-link,$$PWD/../../LimeReport/build/$${QT_VERSION}/$${ARCH_TYPE}/debug/lib/
+        LIBS += -L$$PWD/../3rd/LimeReport/build/$${QT_VERSION}/$${ARCH_TYPE}/debug/lib/ -llimereport -lQtZint
+        #QMAKE_CXXFLAGS += -Wl,-rpath-link,$$PWD/../3rd/LimeReport/build/$${QT_VERSION}/$${ARCH_TYPE}/debug/lib/
     } else {
-        LIBS += -L$$PWD/../../LimeReport/build/$${QT_VERSION}/$${ARCH_TYPE}/release/lib/ -llimereport -lQtZint
-        #QMAKE_CXXFLAGS += -Wl,-rpath-link,$$PWD/../../LimeReport/build/$${QT_VERSION}/$${ARCH_TYPE}/release/lib/
+        LIBS += -L$$PWD/../3rd/LimeReport/build/$${QT_VERSION}/$${ARCH_TYPE}/release/lib/ -llimereport -lQtZint
+        #QMAKE_CXXFLAGS += -Wl,-rpath-link,$$PWD/../3rd/LimeReport/build/$${QT_VERSION}/$${ARCH_TYPE}/release/lib/
     }
 }
 
@@ -81,12 +81,12 @@ else:unix: LIBS += -L$$OUT_PWD/../application/ -lcore
 INCLUDEPATH += $$PWD/../core
 DEPENDPATH += $$PWD/../core
 
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../qdecimal/lib/ -lqdecimal -ldecnumber
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../qdecimal/lib/ -lqdecimal -ldecnumber
-else:unix: LIBS += -L$$OUT_PWD/../qdecimal/lib/ -lqdecimal -ldecnumber
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../3rd/qdecimal/lib/ -lqdecimal -ldecnumber
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../3rd/qdecimal/lib/ -lqdecimal -ldecnumber
+else:unix: LIBS += -L$$OUT_PWD/../3rd/qdecimal/lib/ -lqdecimal -ldecnumber
 
-INCLUDEPATH += $$PWD/../qdecimal/src
-INCLUDEPATH += $$PWD/../qdecimal/decnumber
+INCLUDEPATH += $$PWD/../3rd/qdecimal/src
+INCLUDEPATH += $$PWD/../3rd/qdecimal/decnumber
 
 RESOURCES += \
     appRc.qrc

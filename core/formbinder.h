@@ -13,7 +13,7 @@
 #include "iform.h"
 #include "objectbinder.h"
 
-#include "../qdecimal/src/QDecDouble.hh"
+#include <QDecDouble.hh>
 
 template<class T>
 class FormBinder : public IForm

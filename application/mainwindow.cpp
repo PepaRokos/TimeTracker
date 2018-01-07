@@ -8,6 +8,11 @@
 #include <QVBoxLayout>
 #include <QFileDialog>
 #include <QDebug>
+#include <QStandardPaths>
+#include <QDir>
+
+/*#include "firststartwizard.h"
+#include "firststartdata.h"*/
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -63,7 +68,9 @@ MainWindow::MainWindow(QWidget *parent) :
         i++;
     }
 
-   ((QVBoxLayout*)ui->navigation->layout())->addStretch(1);
+    initDatabase();
+
+    ((QVBoxLayout*)ui->navigation->layout())->addStretch(1);
 
     if (Context::instance().db() != NULL)
     {
@@ -131,6 +138,7 @@ void MainWindow::on_actionLogin_triggered()
 void MainWindow::showEvent(QShowEvent *evt)
 {
     QWidget::showEvent(evt);
+
     if (Context::instance().db() != NULL && Context::instance().currentUser().data() == NULL)
     {
         m_loginDialog->show();
@@ -147,16 +155,6 @@ void MainWindow::on_actionSettings_triggered()
 {
     SettingsForm *settings = new SettingsForm(this);
     settings->show();
-}
-
-void MainWindow::on_actionPost_register_triggered()
-{
-    IPlugin *plugZipCodes = Context::instance().plugin("POSTREGISTER");
-
-    if (plugZipCodes != NULL)
-    {
-        openPlugin(plugZipCodes);
-    }
 }
 
 void MainWindow::openPlugin(IPlugin *plugin)
@@ -234,15 +232,74 @@ void MainWindow::closaAllTabs()
     }
 }
 
-void MainWindow::on_actionCountry_register_triggered()
+void MainWindow::initDatabase()
 {
-    IPlugin *plugCountryReg = Context::instance().plugin("COUNTRYREGISTER");
+    QString dbPath = Context::instance().settings()->value("db/path", "").toString();
 
-    if (plugCountryReg != NULL)
+    if (dbPath.isEmpty())
     {
-        openPlugin(plugCountryReg);
-    }
+       /* FirstStartWizard *wizard = new FirstStartWizard(this);
 
+        if (wizard->exec() == QDialog::Accepted)
+        {
+            FirstStartDataPtr data = wizard->data();
+            if (data->defaultDbPath())
+            {
+                QString dir = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.timetracker/";
+
+                if (!QDir(dir).exists())
+                {
+                    QDir().mkdir(dir);
+                }
+
+                dbPath = dir + "data.db";
+            }
+            else
+            {
+                dbPath = data->dbFile();
+            }
+
+            Context::instance().openDb(dbPath);
+
+            PermissionService permSrv;
+            QSharedPointer<User> user = permSrv.loadUser("admin");
+
+            if (data->singleUser())
+            {
+                Context::instance().setCurrentUser(user);
+
+                SettingsService setSrv("CORE");
+                GlobalSettingsPtr settings = setSrv.loadSettings<GlobalSettings>();
+
+                settings->setSingleUser(true);
+                setSrv.saveSettings(settings);
+            }
+
+            if (!data->defaultAdmin() && !data->singleUser())
+            {
+                user->setLogin(data->login());
+                user->setPassword(permSrv.encryptPassword(data->password()));
+
+                UserService userSrv;
+                userSrv.updateUser(user);
+            }
+        }*/
+
+    }
+    else
+    {
+        Context::instance().openDb(dbPath);
+
+        SettingsService setSrv("CORE");
+        GlobalSettingsPtr settings = setSrv.loadSettings<GlobalSettings>();
+
+        if (settings->singleUser())
+        {
+            PermissionService permSrv;
+            QSharedPointer<User> user = permSrv.loadUser("admin");
+            Context::instance().setCurrentUser(user);
+        }
+    }
 }
 
 void MainWindow::on_actionAbout_Qt_triggered()
@@ -252,5 +309,5 @@ void MainWindow::on_actionAbout_Qt_triggered()
 
 void MainWindow::on_actionAbout_triggered()
 {
-    QMessageBox::about(this, tr("About prodejna"), tr("Modular cash register software under GPL license.\n(C) 2015 - 2017 Josef Rokos, Zdenek Jonák"));
+    QMessageBox::about(this, tr("About TimeTracker"), tr("Modular project time tracking software under GPL license.\n(C) 2015 - 2017 Josef Rokos, Zdenek Jonák"));
 }

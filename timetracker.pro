@@ -2,7 +2,7 @@ TEMPLATE = subdirs
 CONFIG += ordered
 
 SUBDIRS += \
-    qdecimal \ 
+    3rd \
     core \
     application \ 
     addressbook \

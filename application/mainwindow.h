@@ -35,10 +35,6 @@ private slots:
 
     void on_actionSettings_triggered();
 
-    void on_actionPost_register_triggered();
-
-    void on_actionCountry_register_triggered();
-
     void on_actionAbout_Qt_triggered();
 
     void on_actionAbout_triggered();
@@ -54,6 +50,7 @@ private:
     void openDashboard();
     void refreshDashboard();
     void closaAllTabs();
+    void initDatabase();
 
     // QWidget interface
 protected:

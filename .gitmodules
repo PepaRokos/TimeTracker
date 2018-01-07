@@ -1,0 +1,6 @@
+[submodule "3rd/LimeReport"]
+	path = 3rd/LimeReport
+	url = https://github.com/fralx/LimeReport.git
+[submodule "3rd/qdecimal"]
+	path = 3rd/qdecimal
+	url = https://github.com/PepaRokos/qdecimal.git

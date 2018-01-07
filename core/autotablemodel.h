@@ -8,7 +8,7 @@
 #include <QDebug>
 #include <QDecDouble.hh>
 
-#include "../qdecimal/src/QDecDouble.hh"
+#include <QDecDouble.hh>
 
 #include "define.h"
 #include "core_global.h"

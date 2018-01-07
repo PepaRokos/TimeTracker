@@ -46,8 +46,8 @@ ODB_FLAGS += -I $$[QT_INSTALL_HEADERS]
 ODB_FLAGS += -I $$[QT_INSTALL_HEADERS]/QtCore
 ODB_FLAGS += -I $$PWD/core
 ODB_FLAGS += -I $$PWD/core/data
-ODB_FLAGS += -I $$PWD/qdecimal/src
-ODB_FLAGS += -I $$PWD/qdecimal/decnumber
+ODB_FLAGS += -I $$PWD/3rd/qdecimal/src
+ODB_FLAGS += -I $$PWD/3rd/qdecimal/decnumber
 ODB_FLAGS += $$ODB_OTHER_INCLUDES
 ODB_FLAGS += -x -std=c++11 -x -fPIC
 

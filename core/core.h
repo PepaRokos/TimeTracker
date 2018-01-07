@@ -8,6 +8,7 @@
 #include "transaction.h"
 #include "gridform.h"
 #include "permissionservice.h"
+#include "users/userservice.h"
 #include "combodata.h"
 #include "settingsservice.h"
 #include "settingsform.h"
