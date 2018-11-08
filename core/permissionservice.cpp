@@ -61,15 +61,23 @@ QSharedPointer<User> PermissionService::loadUser(const QString &login)
     return db->query_one<User>("login = " + odb::query<User>::_ref(login));
 }
 
-void PermissionService::checkForAdmin()
+QSharedPointer<User> PermissionService::adminUser()
 {
     odb::database *db = Context::instance().db();
 
     Transaction tr;
     odb::query<User> q(odb::query<User>::isAdmin == true);
-    odb::result<User> r = db->query<User>(q);
 
-    if (r.empty())
+    return db->query_one<User>(q);
+}
+
+void PermissionService::checkForAdmin()
+{
+    odb::database *db = Context::instance().db();
+
+    Transaction tr;
+
+    if (adminUser().isNull())
     {
         QSharedPointer<User> admin(new User);
         admin->setLogin("admin");

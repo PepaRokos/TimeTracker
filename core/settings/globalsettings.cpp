@@ -7,6 +7,7 @@ GlobalSettings::GlobalSettings(QObject *parent) : QObject(parent)
     m_vatHigh = 0;
     m_vatFirstLower = 0;
     m_vatSecondLower = 0;
+    m_singleUser = false;
 }
 
 QString GlobalSettings::firmName() const
@@ -154,6 +155,16 @@ QString GlobalSettings::phone() const
 void GlobalSettings::setPhone(const QString &phone)
 {
     m_phone = phone;
+}
+
+bool GlobalSettings::singleUser() const
+{
+    return m_singleUser;
+}
+
+void GlobalSettings::setSingleUser(bool singleUser)
+{
+    m_singleUser = singleUser;
 }
 
 

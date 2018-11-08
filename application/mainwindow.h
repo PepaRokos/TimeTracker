@@ -51,6 +51,7 @@ private:
     void refreshDashboard();
     void closaAllTabs();
     void initDatabase();
+    void openDatabase(const QString &dbPath);
 
     // QWidget interface
 protected:

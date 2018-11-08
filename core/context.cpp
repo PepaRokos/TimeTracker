@@ -71,11 +71,11 @@ void Context::loadPlugins()
         }
     }
 
-    QString dbPath = m_settings->value("db/path", "").toString();
+    /*QString dbPath = m_settings->value("db/path", "").toString();
     if (!dbPath.isEmpty())
     {
         openDb(dbPath);
-    }
+    }*/
 }
 
 void Context::openDb(const QString &path)

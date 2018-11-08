@@ -31,6 +31,7 @@ GlobalSettingsForm::GlobalSettingsForm(QWidget *parent) :
     registerBinding(ui->web);
     registerBinding(ui->email);
     registerBinding(ui->phone);
+    registerBinding(ui->singleUser);
 
     m_seriesModel = new AutoTableModel<NumberSeries>(this);
     m_seriesModel->setEditableCols(QList<int>() << 0);

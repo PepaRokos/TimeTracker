@@ -23,6 +23,7 @@ public:
     QSharedPointer<Permission> forNameAndPlugin(const QString &name, const QString &pluginId);
     bool checkLogin(const QString &login, const QString &password);
     QSharedPointer<User> loadUser(const QString &login);
+    QSharedPointer<User> adminUser();
     void checkForAdmin();
     QString encryptPassword(const QString &plainPasswd);
 };

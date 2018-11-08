@@ -25,6 +25,7 @@ class CORESHARED_EXPORT GlobalSettings : public QObject
     Q_PROPERTY(QString email READ email WRITE setEmail)
     Q_PROPERTY(QString web READ web WRITE setWeb)
     Q_PROPERTY(QString phone READ phone WRITE setPhone)
+    Q_PROPERTY(bool singleUser READ singleUser WRITE setSingleUser)
 
 public:
     explicit GlobalSettings(QObject *parent = 0);
@@ -74,6 +75,9 @@ public:
     QString phone() const;
     void setPhone(const QString &phone);
 
+    bool singleUser() const;
+    void setSingleUser(bool singleUser);
+
 private:
     QString m_firmName;
     QString m_street;
@@ -90,6 +94,7 @@ private:
     QString m_email;
     QString m_web;
     QString m_phone;
+    bool m_singleUser;
 
 signals:
 

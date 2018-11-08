@@ -29,14 +29,19 @@ win32 {
 SOURCES += main.cpp\
         mainwindow.cpp \
     logindialog.cpp \
-    application.cpp
+    application.cpp \
+    firststartdata.cpp \
+    firststartwizard.cpp
 
 HEADERS  += mainwindow.h \
     logindialog.h \
-    application.h
+    application.h \
+    firststartdata.h \
+    firststartwizard.h
 
 FORMS    += mainwindow.ui \
-    logindialog.ui
+    logindialog.ui \
+    firststartwizard.ui
 
 unix {
     target.path = /usr/local/bin

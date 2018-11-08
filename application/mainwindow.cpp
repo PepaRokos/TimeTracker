@@ -11,8 +11,8 @@
 #include <QStandardPaths>
 #include <QDir>
 
-/*#include "firststartwizard.h"
-#include "firststartdata.h"*/
+#include "firststartwizard.h"
+#include "firststartdata.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -38,8 +38,6 @@ MainWindow::MainWindow(QWidget *parent) :
         QSharedPointer<User> u = service.loadUser(m_loginDialog->login());
         Context::instance().setCurrentUser(u);
 
-        m_lblUser->setText(u->name());
-        ui->labelUser->setText(u->name());
         openDashboard();
         m_loginDialog->reset();
     });
@@ -68,14 +66,7 @@ MainWindow::MainWindow(QWidget *parent) :
         i++;
     }
 
-    initDatabase();
-
     ((QVBoxLayout*)ui->navigation->layout())->addStretch(1);
-
-    if (Context::instance().db() != NULL)
-    {
-        ui->navigation->setEnabled(true);
-    }
 }
 
 MainWindow::~MainWindow()
@@ -105,9 +96,12 @@ void MainWindow::on_actionOpen_database_triggered()
     QString dbFile = QFileDialog::getOpenFileName(this, "Open Database", "", "Database Files (*.db)");
     if (!dbFile.isEmpty())
     {
-        Context::instance().openDb(dbFile);
-        ui->navigation->setEnabled(true);
-        on_actionLogin_triggered();
+        openDatabase(dbFile);
+
+        if (Context::instance().currentUser().isNull())
+        {
+            m_loginDialog->show();
+        }
     }
 }
 
@@ -138,6 +132,13 @@ void MainWindow::on_actionLogin_triggered()
 void MainWindow::showEvent(QShowEvent *evt)
 {
     QWidget::showEvent(evt);
+
+    initDatabase();
+
+    if (Context::instance().db() != NULL)
+    {
+        ui->navigation->setEnabled(true);
+    }
 
     if (Context::instance().db() != NULL && Context::instance().currentUser().data() == NULL)
     {
@@ -205,6 +206,12 @@ void MainWindow::openDashboard()
         }
     }
 
+    if (!Context::instance().currentUser().isNull())
+    {
+        m_lblUser->setText(Context::instance().currentUser()->name());
+        ui->labelUser->setText(Context::instance().currentUser()->name());
+    }
+
     refreshDashboard();
 }
 
@@ -238,11 +245,15 @@ void MainWindow::initDatabase()
 
     if (dbPath.isEmpty())
     {
-       /* FirstStartWizard *wizard = new FirstStartWizard(this);
+        FirstStartWizard *wizard = new FirstStartWizard(this);
+        wizard->setAttribute(Qt::WA_DeleteOnClose);
 
-        if (wizard->exec() == QDialog::Accepted)
-        {
+        wizard->show();
+
+        connect(wizard, &QDialog::accepted, [this, wizard](){
             FirstStartDataPtr data = wizard->data();
+            QString dbPath;
+
             if (data->defaultDbPath())
             {
                 QString dir = QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/.timetracker/";
@@ -273,6 +284,10 @@ void MainWindow::initDatabase()
 
                 settings->setSingleUser(true);
                 setSrv.saveSettings(settings);
+
+                openDashboard();
+
+                ui->actionLogin->setEnabled(false);
             }
 
             if (!data->defaultAdmin() && !data->singleUser())
@@ -283,23 +298,44 @@ void MainWindow::initDatabase()
                 UserService userSrv;
                 userSrv.updateUser(user);
             }
-        }*/
 
+            ui->navigation->setEnabled(true);
+        });
+
+        connect(wizard, &QDialog::rejected, [this](){
+            this->close();
+        });
     }
     else
     {
-        Context::instance().openDb(dbPath);
-
-        SettingsService setSrv("CORE");
-        GlobalSettingsPtr settings = setSrv.loadSettings<GlobalSettings>();
-
-        if (settings->singleUser())
-        {
-            PermissionService permSrv;
-            QSharedPointer<User> user = permSrv.loadUser("admin");
-            Context::instance().setCurrentUser(user);
-        }
+        openDatabase(dbPath);
     }
+}
+
+void MainWindow::openDatabase(const QString &dbPath)
+{
+    Context::instance().openDb(dbPath);
+
+    SettingsService setSrv("CORE");
+    GlobalSettingsPtr settings = setSrv.loadSettings<GlobalSettings>();
+
+    if (settings->singleUser())
+    {
+        PermissionService permSrv;
+        QSharedPointer<User> user = permSrv.adminUser();
+        Context::instance().setCurrentUser(user);
+
+        openDashboard();
+
+        ui->actionLogin->setEnabled(false);
+    }
+    else
+    {
+        ui->actionLogin->setEnabled(true);
+        Context::instance().setCurrentUser(QSharedPointer<User>());
+    }
+
+    ui->navigation->setEnabled(true);
 }
 
 void MainWindow::on_actionAbout_Qt_triggered()
